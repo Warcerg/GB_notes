@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".DetailsActivity">
 
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentNotesList"
+    <FrameLayout
+        android:id="@+id/frameNoteDetails"
         android:name="com.example.gb_notes.NotesListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
