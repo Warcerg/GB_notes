@@ -27,6 +27,8 @@ public class NotesListFragment extends Fragment {
     private List<Notes> notesArray = new ArrayList<>();
     private boolean isLandscape;
 
+    //test//
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
