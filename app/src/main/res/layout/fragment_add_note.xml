@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".AddNote">
+
+    <TextView
+        android:id="@+id/textNoteIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/index_size"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/textNoteHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/HeadingHint"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="@dimen/heading_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/textNoteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textSize="@dimen/date_text_size"
+        android:textStyle="italic"
+        android:inputType="date"
+        android:hint="@string/dateHint"
+      />
+
+    <EditText
+        android:id="@+id/textNoteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:textSize="@dimen/note_text_size"
+        android:inputType="text"
+        android:hint="@string/note_text_hint"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSaveNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/save"
+        android:textColor="#000000"
+        android:textSize="@dimen/heading_text_size"
+        app:cornerRadius="20dp" />
+
+</LinearLayout>

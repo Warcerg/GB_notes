@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment">
+
+    <TextView
+        android:id="@+id/settingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Settings"
+        android:gravity="center"
+        android:textSize="@dimen/heading_text_size"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/settingsNightMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Night Mode"
+            android:layout_gravity="center"
+            android:textSize="@dimen/index_size"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchNightMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/settingsOrientationLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Orientation lock"
+            android:layout_gravity="center"
+            android:textSize="@dimen/index_size"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchOrientationLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

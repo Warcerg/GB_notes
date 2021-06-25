@@ -27,8 +27,6 @@ public class NotesListFragment extends Fragment {
     private List<Notes> notesArray = new ArrayList<>();
     private boolean isLandscape;
 
-    //test//
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,10 +75,20 @@ public class NotesListFragment extends Fragment {
     }
 
     private void showPortNoteDetails(Notes selectedNote) {
-        Intent intent = new Intent();
+ /*       Intent intent = new Intent();
         intent.setClass(getActivity(),DetailsActivity.class);
         intent.putExtra(NoteDetailsFragment.ARG_INDEX, selectedNote);
-        startActivity(intent);
+        startActivity(intent);*/
+        notesArray.clear();
+        NoteDetailsFragment details = NoteDetailsFragment.newInstance(selectedNote);
+
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.fragmentNotesList, details);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
+
     }
 
     private void showLandNoteDetails(Notes selectedNote) {
