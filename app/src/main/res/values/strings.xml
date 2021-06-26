@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">GB_Notes</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">Save</string>
     <string name="HeadingHint">Heading</string>
     <string name="dateHint">date</string>
     <string name="note_text_hint">Note text</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="search">search</string>
+    <string name="settings">Settings</string>
+    <string name="noteadd">Add note</string>
+    <string name="navigation">Navigation</string>
+    <string name="application_info">Application Info</string>
+    <string name="notes_list">Notes List</string>
 </resources>
