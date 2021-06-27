@@ -24,4 +24,8 @@ public class Notes implements CardsSource {
     public int getSize() {
         return notes.size();
     }
+
+    public void clear(){
+        notes.clear();
+    }
 }

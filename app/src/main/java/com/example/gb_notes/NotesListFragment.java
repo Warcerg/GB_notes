@@ -1,4 +1,4 @@
-package com.example.gb_notes.ui;
+package com.example.gb_notes;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gb_notes.NoteDetailsFragment;
-import com.example.gb_notes.R;
 import com.example.gb_notes.data.CardsSource;
 import com.example.gb_notes.data.Note;
 import com.example.gb_notes.data.Notes;
@@ -48,7 +47,7 @@ public class NotesListFragment extends Fragment {
         notes.addNote(new Note("Vacation", "buy tickets\nbook the hotel\n buy sunglasses", "17.06.2021", 5));
         notes.addNote(new Note("Homework", "1) Do homework #8\n2) Listen lesson 9\n3) Check the homework #9", "27.06.2021", 6));
         notes.addNote(new Note("Another entry", "just some text", "28.06.2021", 7));
-        notes.addNote(new Note("Music to learn to play", "1) Jamiroquai\n2) Anderson Paak\n3)Chic", "30.06.2021", 8));
+        notes.addNote(new Note("Songs to learn to play", "1) Jamiroquai\n2) Anderson Paak\n3)Chic", "30.06.2021", 8));
         notes.addNote(new Note("Work related", "1) NTM inventory analysis\n 2)Kick-off project meeting\n 3) Winshuttle script for auto PO creation", "02.07.2021", 9));
         notes.addNote(new Note("Random note", "random text to be repeated. random text to be repeated. random text to be repeated. random text to be repeated. random text to be repeated. random text to be repeated", "01.07.2021", 10));
         notes.addNote(new Note("Last entry", "Hope this app works correctly", "29.06.2021", 11));
@@ -69,6 +68,11 @@ public class NotesListFragment extends Fragment {
             selectedNote = data.getNoteData(position);
             showPortNoteDetails(selectedNote);
         });
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+
+        itemDecoration.setDrawable(getResources().getDrawable(R.drawable.separator,null));
+        recyclerView.addItemDecoration(itemDecoration);
 
     }
 
@@ -113,6 +117,7 @@ public class NotesListFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        notes.clear();
         super.onDestroyView();
     }
 }

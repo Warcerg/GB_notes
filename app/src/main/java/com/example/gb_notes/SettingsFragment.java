@@ -43,14 +43,11 @@ public class SettingsFragment extends Fragment {
 
     private void initSwitchDarkMode(View view) {
         SwitchCompat switchDarkMode = view.findViewById(R.id.switchNightMode);
-        switchDarkMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
+        switchDarkMode.setOnClickListener(v -> {
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
         });
     }
@@ -58,12 +55,7 @@ public class SettingsFragment extends Fragment {
 
     private void initSwitchOrientationLock(View view) {
         SwitchCompat switchOrientationLock = view.findViewById(R.id.switchOrientationLock);
-        switchOrientationLock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), TOAST, Toast.LENGTH_SHORT).show();
-            }
-        });
+        switchOrientationLock.setOnClickListener(v -> Toast.makeText(getActivity(), TOAST, Toast.LENGTH_SHORT).show());
     }
 
 

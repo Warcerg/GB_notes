@@ -6,4 +6,15 @@
     <dimen name="note_text_size">20sp</dimen>
     <dimen name="nav_header_height">200dp</dimen>
     <dimen name="nav_header_dimen">42sp</dimen>
+    <dimen name="separator_margin">10dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="card_elevation">30dp</dimen>
+    <dimen name="card_layout_margin_start">10dp</dimen>
+    <dimen name="card_layout_margin_end">10dp</dimen>
+    <dimen name="card_index_text_size">20sp</dimen>
+    <dimen name="card_heading_text_size">25sp</dimen>
+    <dimen name="card_date_text_size">15sp</dimen>
+    <dimen name="card_note_preview_layout_height">40sp</dimen>
+    <dimen name="card_note_preview_text_size">15sp</dimen>
+    <dimen name="settings_lin_layout_margin">50dp</dimen>
 </resources>

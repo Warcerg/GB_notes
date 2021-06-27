@@ -4,7 +4,6 @@ package com.example.gb_notes.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,12 +77,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         }
 
         private void viewHolderSetOnClickListener(TextView textView) {
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (itemClickListener != null) {
-                        itemClickListener.onItemClick(v, getAdapterPosition());
-                    }
+            textView.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    itemClickListener.onItemClick(v, getAdapterPosition());
                 }
             });
         }
@@ -98,7 +94,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         private void notePreviewSet(Note note) {
             StringBuilder sb = new StringBuilder();
             if(textPreviewLength > note.getNoteText().length() ){
-                sb.append(note.getNoteText().substring(0, note.getNoteText().length()));
+                sb.append(note.getNoteText());
             } else {
                 sb.append(note.getNoteText().substring(0, textPreviewLength));
             }

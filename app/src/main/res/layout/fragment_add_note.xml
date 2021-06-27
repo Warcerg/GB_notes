@@ -50,9 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/save_button_color"
         android:text="@string/save"
-        android:textColor="#000000"
+        android:textColor="@color/save_button_text_color"
         android:textSize="@dimen/heading_text_size"
         app:cornerRadius="20dp" />
 

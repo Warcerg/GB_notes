@@ -1,12 +1,10 @@
 package com.example.gb_notes;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ public class NoteDetailsFragment extends Fragment {
 
     public static final String ARG_INDEX = "index";
     private Note note;
-    private boolean isLandscape;
 
     public static NoteDetailsFragment newInstance(Note note){
         NoteDetailsFragment fragment = new NoteDetailsFragment();
@@ -39,10 +36,6 @@ public class NoteDetailsFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-/*        if( getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-            fragmentManager.popBackStack();
-        }*/
     }
 
 

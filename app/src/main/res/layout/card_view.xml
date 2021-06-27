@@ -4,17 +4,16 @@
     android:id="@+id/CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="30dp"
-    android:layout_marginTop="10dp"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="@dimen/card_layout_margin_start"
+        android:layout_marginEnd="@dimen/card_layout_margin_end">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:gravity="start"
-                android:text="Index"
-                android:textSize="20sp"
+                android:text="@string/card_index_view"
+                android:textSize="@dimen/card_index_text_size"
                 />
 
             <TextView
@@ -37,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Heading"
-                android:textSize="25sp"
+                android:text="@string/card_heading_text"
+                android:textSize="@dimen/card_heading_text_size"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -53,18 +52,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center_vertical"
-                android:text="Date"
-                android:textSize="15sp"
+                android:text="@string/card_date_text"
+                android:textSize="@dimen/card_date_text_size"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/cardNotePreview"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
+                android:layout_height="@dimen/card_note_preview_layout_height"
                 android:layout_weight="2"
                 android:gravity="end"
-                android:text="NotePreview"
-                android:textSize="15sp" />
+                android:text="@string/card_note_preview_text"
+                android:textSize="@dimen/card_note_preview_text_size" />
 
         </LinearLayout>
 
