@@ -1,7 +1,6 @@
 package com.example.gb_notes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -30,7 +29,8 @@ public class NotesListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notes_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_notes_list, container, false);
+        return view;
     }
 
     @Override
@@ -75,15 +75,19 @@ public class NotesListFragment extends Fragment {
     }
 
     private void showPortNoteDetails(Notes selectedNote) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(),DetailsActivity.class);
-        intent.putExtra(NoteDetailsFragment.ARG_INDEX, selectedNote);
-        startActivity(intent);
+        NoteDetailsFragment details = NoteDetailsFragment.newInstance(selectedNote);
+
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.mainFragment, details);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
+
     }
 
     private void showLandNoteDetails(Notes selectedNote) {
         NoteDetailsFragment details = NoteDetailsFragment.newInstance(selectedNote);
-
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameNoteDetails, details);
@@ -119,5 +123,9 @@ public class NotesListFragment extends Fragment {
         }
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        notesArray.clear();
+    }
 }
