@@ -11,16 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.gb_notes.ui.NotesListFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {

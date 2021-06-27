@@ -13,14 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.gb_notes.data.Note;
+
 
 public class NoteDetailsFragment extends Fragment {
 
     public static final String ARG_INDEX = "index";
-    private Notes note;
+    private Note note;
     private boolean isLandscape;
 
-    public static NoteDetailsFragment newInstance(Notes note){
+    public static NoteDetailsFragment newInstance(Note note){
         NoteDetailsFragment fragment = new NoteDetailsFragment();
 
         Bundle args = new Bundle();
@@ -37,10 +39,10 @@ public class NoteDetailsFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if( getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+/*        if( getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             fragmentManager.popBackStack();
-        }
+        }*/
     }
 
 
