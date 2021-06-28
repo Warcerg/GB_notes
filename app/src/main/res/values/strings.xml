@@ -13,4 +13,12 @@
     <string name="navigation">Navigation</string>
     <string name="application_info">Application Info</string>
     <string name="notes_list">Notes List</string>
+    <string name="card_index_view">Index</string>
+    <string name="card_heading_text">Heading</string>
+    <string name="card_date_text">Date</string>
+    <string name="card_note_preview_text">NotePreview</string>
+    <string name="app_info_heading">Application information</string>
+    <string name="settings_heading_text">Settings</string>
+    <string name="settings_night_mode_text">Night Mode</string>
+    <string name="settings_or_lock_text">Orientation lock</string>
 </resources>

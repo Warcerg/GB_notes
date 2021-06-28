@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Settings"
+        android:text="@string/settings_heading_text"
         android:gravity="center"
         android:textSize="@dimen/heading_text_size"
         android:textStyle="bold"/>
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/settings_lin_layout_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Night Mode"
+            android:text="@string/settings_night_mode_text"
             android:layout_gravity="center"
             android:textSize="@dimen/index_size"
             android:textStyle="bold"/>
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Orientation lock"
+            android:text="@string/settings_or_lock_text"
             android:layout_gravity="center"
             android:textSize="@dimen/index_size"
             android:textStyle="bold"/>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="separator_color">#1E1F20</color>
+    <color name="nav_start_color_grad">#1E1F20</color>
+    <color name="nav_center_color_grad">#1F2020</color>
+    <color name="nav_end_color_grad">#151415</color>
+    <color name="toolbar_start_color_grad">#1D2020</color>
+    <color name="toolbar_center_color_grad">#222727</color>
+    <color name="toolbar_end_color_grad">#151415</color>
+    <color name="save_button_color">#1E1F20</color>
+    <color name="save_button_text_color">#FFFFFF</color>
+</resources>

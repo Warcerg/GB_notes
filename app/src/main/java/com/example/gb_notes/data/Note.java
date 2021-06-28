@@ -1,16 +1,16 @@
-package com.example.gb_notes;
+package com.example.gb_notes.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class Notes implements Parcelable {
+public class Note implements Parcelable {
     private String heading;
     private String noteText;
     private String date;
     private int noteIndex;
 
-    public Notes(String theme, String noteText, String date, int index) {
+    public Note(String theme, String noteText, String date, int index) {
         this.heading = theme;
         this.noteText = noteText;
         this.date = date;
@@ -18,22 +18,22 @@ public class Notes implements Parcelable {
 
     }
 
-    protected Notes(Parcel in) {
+    protected Note(Parcel in) {
         heading = in.readString();
         noteText = in.readString();
         date = in.readString();
         noteIndex = in.readInt();
     }
 
-    public static final Creator<Notes> CREATOR = new Creator<Notes>() {
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
-        public Notes createFromParcel(Parcel in) {
-            return new Notes(in);
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
         }
 
         @Override
-        public Notes[] newArray(int size) {
-            return new Notes[size];
+        public Note[] newArray(int size) {
+            return new Note[size];
         }
     };
 

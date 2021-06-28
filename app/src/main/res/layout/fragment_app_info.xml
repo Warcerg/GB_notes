@@ -10,15 +10,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Application information"
+        android:text="@string/app_info_heading"
         android:gravity="center"
         android:textSize="@dimen/heading_text_size"/>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
 
 </FrameLayout>
