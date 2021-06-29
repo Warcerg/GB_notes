@@ -1,4 +1,4 @@
-package com.example.gb_notes;
+package com.example.gb_notes.ui;
 
 
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.gb_notes.R;
 
 
 public class SettingsFragment extends Fragment {

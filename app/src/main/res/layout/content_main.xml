@@ -11,7 +11,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainFragment"
-        android:name="com.example.gb_notes.NotesListFragment"
+        android:name="com.example.gb_notes.ui.NotesListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

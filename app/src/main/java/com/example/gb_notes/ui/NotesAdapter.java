@@ -4,9 +4,11 @@ package com.example.gb_notes.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -16,11 +18,14 @@ import com.example.gb_notes.R;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private CardsSource dataSource;
+    private final CardsSource dataSource;
+    private final Fragment fragment;
     private OnItemClickListener itemClickListener;
+    private int menuPosition;
 
-    public NotesAdapter(CardsSource dataSource){
+    public NotesAdapter(CardsSource dataSource, Fragment fragment){
         this.dataSource = dataSource;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -40,6 +45,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         return dataSource.getSize();
     }
 
+    public int getMenuPosition() {
+        return menuPosition;
+    }
 
     public void setOnItemClickListener(OnItemClickListener itemClickListener){
         this.itemClickListener = itemClickListener;
@@ -65,9 +73,31 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             heading = itemView.findViewById(R.id.cardNoteHeading);
             date = itemView.findViewById(R.id.cardNoteDate);
             notePreview = itemView.findViewById(R.id.cardNotePreview);
+
+            registerForContextMenu();
+
             initOnClickListeners();
 
+
         }
+
+        private void registerForContextMenu() {
+            registerContextMenu(index);
+            registerContextMenu(heading);
+            registerContextMenu(date);
+            registerContextMenu(notePreview);
+        }
+
+        private void registerContextMenu(@NonNull View itemView) {
+            if(fragment != null){
+                itemView.setOnLongClickListener( v -> {
+                    menuPosition = getLayoutPosition();
+                    return false;
+                });
+                fragment.registerForContextMenu(itemView);
+            }
+        }
+
 
         private void initOnClickListeners() {
             viewHolderSetOnClickListener(index);

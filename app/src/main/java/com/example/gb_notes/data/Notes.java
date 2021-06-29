@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Notes implements CardsSource {
 
     private ArrayList<Note> notes;
+    private static int noteIndex = 0;
 
     public Notes() {
         notes = new ArrayList<>();
@@ -13,6 +14,7 @@ public class Notes implements CardsSource {
 
     public void addNote(Note note){
         notes.add(note);
+        noteIndex++;
     }
 
     @Override
@@ -25,7 +27,28 @@ public class Notes implements CardsSource {
         return notes.size();
     }
 
+
+    @Override
+    public void deleteNoteData(int position) {
+        notes.remove(position);
+    }
+
+    @Override
+    public void updateNoteData(int position, Note note) {
+        notes.set(position, note);
+    }
+
+    @Override
+    public void addNoteData(Note note) {
+        addNote(note);
+    }
+
     public void clear(){
         notes.clear();
     }
+
+    public static int getNoteIndex() {
+        return noteIndex;
+    }
+
 }

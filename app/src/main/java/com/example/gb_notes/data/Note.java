@@ -10,8 +10,8 @@ public class Note implements Parcelable {
     private String date;
     private int noteIndex;
 
-    public Note(String theme, String noteText, String date, int index) {
-        this.heading = theme;
+    public Note(String heading, String noteText, String date, int index) {
+        this.heading = heading;
         this.noteText = noteText;
         this.date = date;
         this.noteIndex = index;

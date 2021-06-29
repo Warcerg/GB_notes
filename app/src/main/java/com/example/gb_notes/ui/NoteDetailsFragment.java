@@ -1,4 +1,4 @@
-package com.example.gb_notes;
+package com.example.gb_notes.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.gb_notes.R;
 import com.example.gb_notes.data.Note;
 
 
@@ -18,6 +19,7 @@ public class NoteDetailsFragment extends Fragment {
 
     public static final String ARG_INDEX = "index";
     private Note note;
+
 
     public static NoteDetailsFragment newInstance(Note note){
         NoteDetailsFragment fragment = new NoteDetailsFragment();
@@ -28,9 +30,6 @@ public class NoteDetailsFragment extends Fragment {
         return fragment;
     }
 
-    public NoteDetailsFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,12 +55,15 @@ public class NoteDetailsFragment extends Fragment {
         TextView noteDate = view.findViewById(R.id.textNoteDate);
         TextView noteText = view.findViewById(R.id.textNoteText);
 
+
         noteIndex.setText(Integer.toString(note.getNoteIndex()));
         noteTheme.setText(note.getHeading());
         noteDate.setText(note.getDate());
         noteText.setText(note.getNoteText());
+
         return view;
     }
+
 
 
 }
