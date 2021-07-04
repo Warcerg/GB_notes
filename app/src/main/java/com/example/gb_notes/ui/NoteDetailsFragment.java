@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.example.gb_notes.R;
 import com.example.gb_notes.data.Note;
 
+import java.text.SimpleDateFormat;
 
-public class NoteDetailsFragment extends Fragment {
+
+public class    NoteDetailsFragment extends Fragment {
 
     public static final String ARG_INDEX = "index";
     private Note note;
@@ -58,7 +60,7 @@ public class NoteDetailsFragment extends Fragment {
 
         noteIndex.setText(Integer.toString(note.getNoteIndex()));
         noteTheme.setText(note.getHeading());
-        noteDate.setText(note.getDate());
+        noteDate.setText(new SimpleDateFormat("dd-MM-yy").format(note.getDate()));
         noteText.setText(note.getNoteText());
 
         return view;

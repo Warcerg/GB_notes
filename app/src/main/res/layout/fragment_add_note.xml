@@ -26,16 +26,14 @@
         android:textSize="@dimen/heading_text_size"
         android:textStyle="bold" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <DatePicker
         android:id="@+id/textNoteDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:textSize="@dimen/date_text_size"
-        android:textStyle="italic"
-        android:inputType="date"
-        android:hint="@string/dateHint"
-      />
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:textSize="@dimen/date_text_size" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textNoteText"

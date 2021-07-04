@@ -12,19 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.gb_notes.MainActivity;
 import com.example.gb_notes.R;
 import com.example.gb_notes.data.Note;
-import com.example.gb_notes.data.Notes;
 import com.example.gb_notes.observer.Publisher;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class AddNoteFragment extends Fragment {
 
     private static final String ARG_NOTE_DATA = "Param_NoteData";
+    private static int noteIndex;
 
     private Note note;
     private Publisher publisher;
@@ -32,9 +36,9 @@ public class AddNoteFragment extends Fragment {
     private TextView index;
     private TextInputEditText heading;
     private TextInputEditText noteText;
-    private TextInputEditText noteDate;
+    private DatePicker datePicker;
 
-    public static AddNoteFragment newInstance(Note note){
+    public static AddNoteFragment newInstance(Note note) {
         AddNoteFragment fragment = new AddNoteFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_NOTE_DATA, note);
@@ -42,7 +46,8 @@ public class AddNoteFragment extends Fragment {
         return fragment;
     }
 
-    public static AddNoteFragment newInstance(){
+    public static AddNoteFragment newInstance(int dataSize) {
+        noteIndex = dataSize+1;
         AddNoteFragment fragment = new AddNoteFragment();
         return fragment;
     }
@@ -51,7 +56,7 @@ public class AddNoteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null){
+        if (getArguments() != null) {
             note = getArguments().getParcelable(ARG_NOTE_DATA);
         }
     }
@@ -59,7 +64,7 @@ public class AddNoteFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        MainActivity activity = (MainActivity)context;
+        MainActivity activity = (MainActivity) context;
         publisher = activity.getPublisher();
     }
 
@@ -69,7 +74,7 @@ public class AddNoteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_note, container, false);
         initView(view);
 
-        if(note != null){
+        if (note != null) {
             populateView();
         }
         return view;
@@ -80,7 +85,7 @@ public class AddNoteFragment extends Fragment {
         index = view.findViewById(R.id.textNoteIndex);
         heading = view.findViewById(R.id.textNoteHeading);
         noteText = view.findViewById(R.id.textNoteText);
-        noteDate = view.findViewById(R.id.textNoteDate);
+        datePicker = view.findViewById(R.id.textNoteDate);
         Button saveButton = view.findViewById(R.id.buttonSaveNote);
         initButtonOnClickListener(saveButton);
     }
@@ -100,7 +105,7 @@ public class AddNoteFragment extends Fragment {
         index.setText(Integer.toString(note.getNoteIndex()));
         heading.setText(note.getHeading());
         noteText.setText(note.getNoteText());
-        noteDate.setText(note.getDate());
+        initDatePicker((note.getDate()));
 
     }
 
@@ -111,26 +116,39 @@ public class AddNoteFragment extends Fragment {
     }
 
     private Note collectNoteData() {
+        Note answer;
+
         Editable headingRaw = this.heading.getText();
         String heading = headingRaw == null ? "" : headingRaw.toString();
 
         Editable noteTextRaw = this.noteText.getText();
         String noteText = noteTextRaw == null ? "" : noteTextRaw.toString();
 
-        Editable noteDateRaw = this.noteDate.getText();
-        String noteDate = noteDateRaw == null ? "" : noteDateRaw.toString();
+        Date date = getDataFromDatePicker();
 
         String indexValue = this.index.getText().toString();
         int index;
-        if (indexValue.equals("")){
-            index = Notes.getNoteIndex()+1;
-        } else{
+        if (indexValue.equals("")) {
+            index = noteIndex;
+        } else {
             index = Integer.parseInt(indexValue);
         }
 
+        if (note != null) {
+            answer = new Note(heading, noteText, date, index);
+            answer.setId(note.getId());
+        } else {
+            answer = new Note(heading, noteText, date, index);
+        }
+        return answer;
+    }
 
-
-        return new Note(heading, noteText, noteDate, index);
+    private Date getDataFromDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, this.datePicker.getYear());
+        calendar.set(Calendar.MONTH, this.datePicker.getMonth());
+        calendar.set(Calendar.DAY_OF_MONTH, this.datePicker.getDayOfMonth());
+        return calendar.getTime();
     }
 
     @Override
@@ -145,5 +163,13 @@ public class AddNoteFragment extends Fragment {
         super.onDetach();
     }
 
+    private void initDatePicker(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.datePicker.init(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH),
+                null);
+    }
 
 }

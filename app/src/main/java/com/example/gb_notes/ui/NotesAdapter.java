@@ -16,15 +16,17 @@ import com.example.gb_notes.data.CardsSource;
 import com.example.gb_notes.data.Note;
 import com.example.gb_notes.R;
 
+import java.text.SimpleDateFormat;
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private final CardsSource dataSource;
+
+    private CardsSource dataSource;
     private final Fragment fragment;
     private OnItemClickListener itemClickListener;
     private int menuPosition;
 
-    public NotesAdapter(CardsSource dataSource, Fragment fragment){
-        this.dataSource = dataSource;
+    public NotesAdapter( Fragment fragment){
         this.fragment = fragment;
     }
 
@@ -55,6 +57,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public interface OnItemClickListener{
         void onItemClick(View view, int position);
+    }
+
+    public void setDataSource(CardsSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -117,7 +124,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         public void setData(Note note){
             index.setText(String.valueOf(note.getNoteIndex()));
             heading.setText(note.getHeading());
-            date.setText(note.getDate());
+            date.setText(new SimpleDateFormat("dd-MM-yy").format(note.getDate()));
             notePreviewSet(note);
         }
 

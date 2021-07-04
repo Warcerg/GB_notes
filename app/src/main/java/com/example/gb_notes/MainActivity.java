@@ -18,13 +18,10 @@ import com.example.gb_notes.ui.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-
-
 public class MainActivity extends AppCompatActivity {
 
     private Publisher publisher = new Publisher();
     private Navigation navigation;
-    private Fragment fragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initview();
 
-        fragmentList= NotesListFragment.newInstance();
+        NotesListFragment fragmentList = NotesListFragment.newInstance();
         getNavigation().addFragment(fragmentList, false);
     }
 
-    public Navigation getNavigation(){
+    public Navigation getNavigation() {
         return navigation;
     }
 
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (navigateFragment(id)){
+                if (navigateFragment(id)) {
                     drawer.closeDrawer(GravityCompat.START);
                     return true;
                 }
@@ -89,15 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 getNavigation().addFragment(new AppInfoFragment(), true);
                 return true;
             case R.id.action_notesList:
-                getNavigation().addFragment(fragmentList, true);
+                getNavigation().addFragment(new NotesListFragment(), true);
                 return true;
         }
         return false;
 
     }
-
-
-
 
 
 }

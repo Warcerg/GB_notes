@@ -2,15 +2,17 @@ package com.example.gb_notes.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.Date;
 
 
 public class Note implements Parcelable {
+    private String id;
     private String heading;
     private String noteText;
-    private String date;
+    private Date date;
     private int noteIndex;
 
-    public Note(String heading, String noteText, String date, int index) {
+    public Note(String heading, String noteText, Date date, int index) {
         this.heading = heading;
         this.noteText = noteText;
         this.date = date;
@@ -21,7 +23,7 @@ public class Note implements Parcelable {
     protected Note(Parcel in) {
         heading = in.readString();
         noteText = in.readString();
-        date = in.readString();
+        date = new Date(in.readLong());
         noteIndex = in.readInt();
     }
 
@@ -45,7 +47,7 @@ public class Note implements Parcelable {
         return noteText;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -62,7 +64,15 @@ public class Note implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(heading);
         dest.writeString(noteText);
-        dest.writeString(date);
+        dest.writeLong(date.getTime());
         dest.writeInt(noteIndex);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

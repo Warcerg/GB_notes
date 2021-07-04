@@ -2,10 +2,11 @@ package com.example.gb_notes.data;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Notes implements CardsSource {
 
-    private ArrayList<Note> notes;
+    private List<Note> notes;
     private static int noteIndex = 0;
 
     public Notes() {
@@ -15,6 +16,16 @@ public class Notes implements CardsSource {
     public void addNote(Note note){
         notes.add(note);
         noteIndex++;
+    }
+
+    @Override
+    public CardsSource init(CardSourceResponse cardSourceResponse) {
+        notes = new ArrayList<>();
+
+        if(cardSourceResponse != null){
+            cardSourceResponse.initialized(this);
+        }
+        return this;
     }
 
     @Override
