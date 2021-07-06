@@ -25,12 +25,12 @@ public class NoteSourceFirebaseImpl implements CardsSource {
     private static final String NOTES_COLLECTION = "notes";
     private FirebaseFirestore store = FirebaseFirestore.getInstance();
     private CollectionReference collection = store.collection(NOTES_COLLECTION);
-
+    private CardSourceResponse cardSourceResponse;
     private List<Note> notesData = new ArrayList<>();
 
     @Override
     public CardsSource init(CardSourceResponse cardSourceResponse) {
-
+        this.cardSourceResponse = cardSourceResponse;
         collection.orderBy(NoteDataMapping.Fields.NOTE_INDEX, Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -57,6 +57,7 @@ public class NoteSourceFirebaseImpl implements CardsSource {
                         Log.d(TAG, "get failed with ", e);
                     }
                 });
+
         return this;
     }
 
@@ -83,7 +84,9 @@ public class NoteSourceFirebaseImpl implements CardsSource {
     @Override
     public void updateNoteData(int position, Note note) {
         String id = note.getId();
-        collection.document(id).set(NoteDataMapping.toDocument(note));
+        collection.document(id).set(NoteDataMapping.toDocument(note)).addOnSuccessListener(d -> {
+            cardSourceResponse.initialized(NoteSourceFirebaseImpl.this);
+        });
     }
 
     @Override
@@ -93,6 +96,7 @@ public class NoteSourceFirebaseImpl implements CardsSource {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         note.setId(documentReference.getId());
+                        cardSourceResponse.initialized(NoteSourceFirebaseImpl.this);
                     }
                 });
     }
