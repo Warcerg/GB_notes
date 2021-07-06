@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".AddNoteFragment">
+    tools:context=".ui.AddNoteFragment">
 
     <TextView
         android:id="@+id/textNoteIndex"
@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/index_size"
         android:textStyle="bold"
+        android:inputType="number"
         />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textNoteHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,24 +26,22 @@
         android:textSize="@dimen/heading_text_size"
         android:textStyle="bold" />
 
-    <EditText
+    <DatePicker
         android:id="@+id/textNoteDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:textSize="@dimen/date_text_size"
-        android:textStyle="italic"
-        android:inputType="date"
-        android:hint="@string/dateHint"
-      />
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:textSize="@dimen/date_text_size" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textNoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:textSize="@dimen/note_text_size"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:hint="@string/note_text_hint"/>
 
     <com.google.android.material.button.MaterialButton

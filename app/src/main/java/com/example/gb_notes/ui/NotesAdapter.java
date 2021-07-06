@@ -4,9 +4,11 @@ package com.example.gb_notes.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -14,13 +16,18 @@ import com.example.gb_notes.data.CardsSource;
 import com.example.gb_notes.data.Note;
 import com.example.gb_notes.R;
 
+import java.text.SimpleDateFormat;
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private CardsSource dataSource;
-    private OnItemClickListener itemClickListener;
 
-    public NotesAdapter(CardsSource dataSource){
-        this.dataSource = dataSource;
+    private CardsSource dataSource;
+    private final Fragment fragment;
+    private OnItemClickListener itemClickListener;
+    private int menuPosition;
+
+    public NotesAdapter( Fragment fragment){
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -40,6 +47,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         return dataSource.getSize();
     }
 
+    public int getMenuPosition() {
+        return menuPosition;
+    }
 
     public void setOnItemClickListener(OnItemClickListener itemClickListener){
         this.itemClickListener = itemClickListener;
@@ -47,6 +57,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public interface OnItemClickListener{
         void onItemClick(View view, int position);
+    }
+
+    public void setDataSource(CardsSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,9 +80,31 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             heading = itemView.findViewById(R.id.cardNoteHeading);
             date = itemView.findViewById(R.id.cardNoteDate);
             notePreview = itemView.findViewById(R.id.cardNotePreview);
+
+            registerForContextMenu();
+
             initOnClickListeners();
 
+
         }
+
+        private void registerForContextMenu() {
+            registerContextMenu(index);
+            registerContextMenu(heading);
+            registerContextMenu(date);
+            registerContextMenu(notePreview);
+        }
+
+        private void registerContextMenu(@NonNull View itemView) {
+            if(fragment != null){
+                itemView.setOnLongClickListener( v -> {
+                    menuPosition = getLayoutPosition();
+                    return false;
+                });
+                fragment.registerForContextMenu(itemView);
+            }
+        }
+
 
         private void initOnClickListeners() {
             viewHolderSetOnClickListener(index);
@@ -87,7 +124,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         public void setData(Note note){
             index.setText(String.valueOf(note.getNoteIndex()));
             heading.setText(note.getHeading());
-            date.setText(note.getDate());
+            date.setText(new SimpleDateFormat("dd-MM-yy").format(note.getDate()));
             notePreviewSet(note);
         }
 

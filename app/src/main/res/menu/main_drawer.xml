@@ -17,9 +17,4 @@
         android:icon="@android:drawable/ic_dialog_info"
         android:orderInCategory="10"
         android:title="@string/application_info" />
-    <item
-        android:id="@+id/action_noteAdd"
-        android:icon="@android:drawable/ic_menu_add"
-        android:orderInCategory="20"
-        android:title="@string/noteadd"/>
 </menu>
