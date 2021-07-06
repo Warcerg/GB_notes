@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -28,6 +29,8 @@ import com.example.gb_notes.data.NoteSourceFirebaseImpl;
 import com.example.gb_notes.data.CardSourceResponse;
 import com.example.gb_notes.data.CardsSource;
 import com.example.gb_notes.data.Note;
+import com.example.gb_notes.observer.ActionObserver;
+import com.example.gb_notes.observer.ActionPublisher;
 import com.example.gb_notes.observer.Observer;
 import com.example.gb_notes.observer.Publisher;
 
@@ -41,6 +44,8 @@ public class NotesListFragment extends Fragment {
     private RecyclerView recyclerView;
     private Navigation navigation;
     private Publisher publisher;
+    private ActionPublisher actPublisher;
+
 
     public static NotesListFragment newInstance() {
         return new NotesListFragment();
@@ -99,6 +104,7 @@ public class NotesListFragment extends Fragment {
         MainActivity activity = (MainActivity) context;
         navigation = activity.getNavigation();
         publisher = activity.getPublisher();
+        actPublisher = activity.getActPublisher();
 
     }
 
@@ -106,6 +112,7 @@ public class NotesListFragment extends Fragment {
     public void onDetach() {
         navigation = null;
         publisher = null;
+        actPublisher = null;
         super.onDetach();
     }
 
@@ -155,32 +162,33 @@ public class NotesListFragment extends Fragment {
                 return true;
             case R.id.action_noteAdd:
                 navigation.addFragment(AddNoteFragment.newInstance(data.getSize()), true);
-                publisher.subscribe(new Observer() {
-                    @Override
-                    public void updateNoteData(Note note) {
-                        data.addNoteData(note);
-                        adapter.notifyItemInserted(data.getSize() - 1);
-                        recyclerView.scrollToPosition((data.getSize()) - 1);
-                    }
+                publisher.subscribe(note -> {
+                    data.addNoteData(note);
+                    adapter.notifyItemInserted(data.getSize() - 1);
+                    recyclerView.scrollToPosition((data.getSize()) - 1);
                 });
                 return true;
             case R.id.action_updateNote:
                 position = adapter.getMenuPosition();
                 navigation.addFragment(AddNoteFragment.newInstance(data.getNoteData(position)), true);
-                publisher.subscribe(new Observer() {
-                    @Override
-                    public void updateNoteData(Note note) {
-                        data.updateNoteData(position, note);
-                        adapter.notifyItemChanged(position);
-                    }
+                publisher.subscribe(note -> {
+                    data.updateNoteData(position, note);
+                    adapter.notifyItemChanged(position);
                 });
                 return true;
             case R.id.action_deleteNote:
                 position = adapter.getMenuPosition();
-                data.deleteNoteData(position);
-                adapter.notifyItemRemoved(position);
+                DialogFragment dialogFragment = new DialogNoteFragment();
+                dialogFragment.show(getChildFragmentManager(), "Tag");
+                actPublisher.subscribe(result -> {
+                    if (result) {
+                        data.deleteNoteData(position);
+                        adapter.notifyItemRemoved(position);
+                    }
+                });
                 return true;
         }
         return false;
     }
+
 }
