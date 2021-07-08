@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.gb_notes.observer.ActionPublisher;
 import com.example.gb_notes.observer.Publisher;
 import com.example.gb_notes.ui.AppInfoFragment;
 import com.example.gb_notes.ui.NotesListFragment;
@@ -21,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private Publisher publisher = new Publisher();
+    private ActionPublisher actPublisher = new ActionPublisher();
     private Navigation navigation;
 
     @Override
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     public Publisher getPublisher() {
         return publisher;
+    }
+
+    public ActionPublisher getActPublisher() {
+        return actPublisher;
     }
 
     private void initview() {
@@ -92,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         return false;
 
     }
+
+
 
 
 }

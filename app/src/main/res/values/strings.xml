@@ -23,4 +23,7 @@
     <string name="settings_or_lock_text">Orientation lock</string>
     <string name="updateNote">Update note</string>
     <string name="delete">Delete note</string>
+    <string name="deletion_warning_dialog">Are you sure you want to permanently delete this note?</string>
+    <string name="deletion_warning_Yes">Yes</string>
+    <string name="deletion_warning_No">No</string>
 </resources>

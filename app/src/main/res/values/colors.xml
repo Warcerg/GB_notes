@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="separator_color">#A1A7A8</color>
+    <color name="dialog_button_color">#A1A7A8</color>
     <color name="toolbar_start_color_grad">#A1A7A8</color>
     <color name="toolbar_center_color_grad">#6E7373</color>
     <color name="toolbar_end_color_grad">#625D62</color>
